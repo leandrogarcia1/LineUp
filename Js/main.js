@@ -86,7 +86,7 @@ let autos = document.getElementById("autos")
 function mostrarCatalogo(array){
 
     autos.innerHTML=""
-    for(let auto of garage){
+    for(let auto of array){
         
         let nuevoAuto  = document.createElement("div")
         nuevoAuto.classList.add("col-12","col-md","col-lg-4","my-3")
@@ -196,19 +196,19 @@ mayorMenor.sort((param1, param2)=>{
 })
 mostrarCatalogo(mayorMenor)
 }
-function ordenarAlfabeticamenteModelo(array){
-const ordenadoAlfabeticamente = [].concat(array)
- ordenadoAlfabeticamente.sort((a,b) => {
-      if(a.modelo > b.modelo) {
+function ordenarPorKm(array){
+const ordenadoKm = [].concat(array)
+ ordenadoKm.sort((a,b) => {
+      if(a.km  > b.km) {
         return 1
       }
-      if (a.modelo < b.modelo) {
+      if (a.km < b.km) {
         return -1
       }
       
       return 0;
 })
-mostrarCatalogo(ordenadoAlfabeticamente)
+mostrarCatalogo(ordenadoKm)
 }
 
 selectOrden.addEventListener("change", ()=>{
@@ -218,7 +218,7 @@ selectOrden.addEventListener("change", ()=>{
     }else if(selectOrden.value == 2){
         ordenarMenorMayor(garage)
     }else if(selectOrden.value == 3){
-        ordenarAlfabeticamenteModelo(garage)
+        ordenarPorKm(garage)
     }else{
         mostrarCatalogo(garage)
     }

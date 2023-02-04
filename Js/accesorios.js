@@ -29,7 +29,7 @@ let accesorios = document.getElementById("accesorios")
 function mostrarCatalogo(array){
 
     
-    for(let accesorio of tiendaOnline){
+    for(let accesorio of array){
         
         let nuevoAccesorio  = document.createElement("div")
         nuevoAccesorio.classList.add("col-12","col-md","col-lg-4","my-3")
@@ -52,3 +52,62 @@ function mostrarCatalogo(array){
 
 mostrarCatalogo(tiendaOnline)
 
+//buscador
+
+let buscador = document.getElementById("buscador")
+let coincidencia = document.getElementById("coincidencia")
+
+function buscarInfo(buscado, array){
+   
+    let busquedaArray = array.filter(
+        (accesorio) => accesorio.nombre.toLowerCase().includes(buscado.toLowerCase()) 
+    ) 
+    
+    if(busquedaArray.length == 0){
+        coincidencia.innerHTML = `<h3>No hay coincidencias con su búsqueda</h3>`
+        mostrarCatalogo(busquedaArray)
+    }else{
+        coincidencia.innerHTML = ""
+        mostrarCatalogo(busquedaArray)
+
+    }
+}
+
+buscador.addEventListener("input", ()=>{
+    console.log(buscador.value)
+    buscarInfo(buscador.value, tiendaOnline)
+}) 
+
+
+//ordenar
+
+let selectOrden = document.getElementById("selectOrden")
+
+
+function ordenarMenorMayor(array){
+    
+    const menorMayor = [].concat(array)
+    
+    menorMayor.sort((a,b) => a.precio - b.precio)
+    mostrarCatalogo(menorMayor)
+}
+function ordenarMayorMenor(arr){
+
+const mayorMenor = [].concat(arr)
+mayorMenor.sort((param1, param2)=>{
+    return param2.precio - param1.precio
+})
+mostrarCatalogo(mayorMenor)
+}
+
+
+selectOrden.addEventListener("change", ()=>{
+    console.log(selectOrden.value)
+    if(selectOrden.value == 1){
+        ordenarMayorMenor(tiendaOnline)
+    }else if(selectOrden.value == 2){
+        ordenarMenorMayor(tiendaOnline)
+    }else{
+        mostrarCatalogo(tiendaOnline)
+    }
+})
