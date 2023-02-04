@@ -28,7 +28,7 @@ const tiendaOnline=[accesorio1,accesorio2,accesorio3,accesorio4,accesorio5,acces
 let accesorios = document.getElementById("accesorios")
 function mostrarCatalogo(array){
 
-    
+    accesorios.innerHTML = ""
     for(let accesorio of array){
         
         let nuevoAccesorio  = document.createElement("div")

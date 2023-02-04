@@ -34,30 +34,7 @@
                 </div>
               </div>
 
-            </div>
-            <div class="collapse navbar-collapse" id="navbarColor01">
-              <ul class="navbar-nav me-auto">
-                <form class="d-flex">
-                  <input id="buscador"class="form-control me-2" placeholder="Busqueda por Nombre " aria-label="Search">
-                  
-                </form> 
-                
-              </ul>
-              <ul>
-                <select id="selectOrden" class="form-select form-select-sm" aria-label=".form-select-sm example">
-                  <option selected>Ordenar por:</option>
-                  <option value="1">Mayor a menor</option>
-                  <option value="2">Menor a mayor</option>
-                  
-                </select>
-              </ul>
-              <ul style="list-style: none;"className="navbar-nav me-auto">  
-                <li className="nav-item "  style="margin-right: 2rem;">
-                    <a id="botonCarrito" data-bs-toggle="modal" data-bs-target="#idModalCarrito" class="btn btn-secondary"><i class="fas fa-shopping-cart fa-1x"></i></a>
-                </li>
-            </ul>
-             
-            </div>
+            
           </nav>
         
     </header>
@@ -80,7 +57,30 @@
            
         </div>
 
-        
+        <div class="container2" style="align-items: center; text-align: center;">
+          <div class="row align-items-start">
+            <div class="col">
+              <form class="d-flex"  >
+              <input id="buscador" style="margin-left: 5rem;" class="form-control me-2" placeholder="Busqueda por Modelo " aria-label="Search">
+                  
+                </form> 
+            
+            </div>
+            <div class="col" style="margin-right: 5rem;">
+              <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">Filtar por:</label>
+                <select id="selectOrden" class="form-select" >
+                  <option selected>Elije una opcion...</option>
+                  <option value="1">Mayor Precio </option>
+                  <option value="2">Menor Precio</option>
+                  
+                </select>
+                <a id="botonCarrito" data-bs-toggle="modal" data-bs-target="#idModalCarrito" class="btn btn-secondary"><i class="fas fa-shopping-cart fa-1x"></i></a>
+              </div>
+
+              
+        </div> 
+      </div> 
 
         
         <div class="container2" style="margin: 5rem;">
