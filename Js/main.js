@@ -103,7 +103,7 @@ function mostrarCatalogo(array){
       autos.appendChild(nuevoAuto)
 
       let btnAgregar = document.getElementById(`agregarBtn${auto.id}`)
-        console.log(btnAgregar)
+        //console.log(btnAgregar)
         btnAgregar.addEventListener("click",()=>{
             alert(`El modelo es ${auto.modelo}, con ${auto.km} Kms color ${auto.color}  año ${auto.año}, su combustible es ${auto.Tipodecombustible} y su precio final es de $${auto.precio}`)
         })
@@ -149,5 +149,77 @@ function cargarAuto(array){
 
 } 
 
+//buscador
+
+let buscador = document.getElementById("buscador")
+let coincidencia = document.getElementById("coincidencia")
+
+function buscarInfo(buscado, array){
+   
+    let busquedaArray = array.filter(
+        (auto) => auto.modelo.toLowerCase().includes(buscado.toLowerCase()) 
+    ) 
+    
+    if(busquedaArray.length == 0){
+        coincidencia.innerHTML = `<h3>No hay coincidencias con su búsqueda</h3>`
+        mostrarCatalogo(busquedaArray)
+    }else{
+        coincidencia.innerHTML = ""
+        mostrarCatalogo(busquedaArray)
+
+    }
+}
+
+buscador.addEventListener("input", ()=>{
+    console.log(buscador.value)
+    buscarInfo(buscador.value, garage)
+}) 
 
 
+//ordenar
+
+let selectOrden = document.getElementById("selectOrden")
+
+
+function ordenarMenorMayor(array){
+    
+    const menorMayor = [].concat(array)
+    
+    menorMayor.sort((a,b) => a.precio - b.precio)
+    mostrarCatalogo(menorMayor)
+}
+function ordenarMayorMenor(arr){
+
+const mayorMenor = [].concat(arr)
+mayorMenor.sort((param1, param2)=>{
+    return param2.precio - param1.precio
+})
+mostrarCatalogo(mayorMenor)
+}
+function ordenarAlfabeticamenteModelo(array){
+const ordenadoAlfabeticamente = [].concat(array)
+ ordenadoAlfabeticamente.sort((a,b) => {
+      if(a.modelo > b.modelo) {
+        return 1
+      }
+      if (a.modelo < b.modelo) {
+        return -1
+      }
+      
+      return 0;
+})
+mostrarCatalogo(ordenadoAlfabeticamente)
+}
+
+selectOrden.addEventListener("change", ()=>{
+    console.log(selectOrden.value)
+    if(selectOrden.value == 1){
+        ordenarMayorMenor(garage)
+    }else if(selectOrden.value == 2){
+        ordenarMenorMayor(garage)
+    }else if(selectOrden.value == 3){
+        ordenarAlfabeticamenteModelo(garage)
+    }else{
+        mostrarCatalogo(garage)
+    }
+})

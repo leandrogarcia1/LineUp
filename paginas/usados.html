@@ -20,7 +20,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
 
-              <img src="../fotos/logo.line.up.png" alt="">
+              <a href="../index.html"><img src="../fotos/logo.line.up.png" alt=""></a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -45,6 +45,7 @@
       </div>
 
       <!--Formulario para cargar nuevo rodado al catalogo-->
+      <div style="margin: 5rem;">
       <h3 style="text-align: center;">Ingrese nuevo Rodado al catalogo</h3>
       <div class="mb-3" style="text-align: center" >
         <label  for="rodadoInput1" class="form-label" >Modelo</label>
@@ -73,9 +74,35 @@
       <div style=" display: flex;align-items: center;justify-content: center; margin: 2rem;">
         <button  id="cargarRodadoNuevo" type="button" class="btn btn-secondary btn-lg" >Cargar Rodado</button>
       </div>
+    </div>
     
+
+
+    <div class="container2" style="align-items: center; text-align: center;">
+        <div class="row align-items-start">
+          <div class="col">
+            <form class="d-flex" >
+            <input id="buscador" style="margin-left: 5rem;" class="form-control me-2" placeholder="Busqueda por Modelo " aria-label="Search">
+                
+              </form> 
+          
+          </div>
+          <div class="col" style="margin-right: 5rem;">
+            <div class="input-group mb-3">
+              <label class="input-group-text" for="inputGroupSelect01">Filtar por:</label>
+              <select id="selectOrden" class="form-select" >
+                <option selected>Elije una opcion...</option>
+                <option value="1">Mayor Precio </option>
+                <option value="2">Menor Precio</option>
+                <option value="3">Menos Kms</option>
+              </select>
+            </div>
+        </div> 
+    </div> 
+
     <!--catalogo -->
     <div class="container">
+      <div id="coincidencia"></div>
       <div id="autos" class="row"></div>
     </div>
       <!--
