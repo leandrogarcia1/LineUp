@@ -171,25 +171,40 @@ function agregarAlCarrito(accesorio){
 //modal
 
 //agregar al modal carrito
+let botonCarrito= document.getElementById("botonCarrito")
 
 let modalBodyCarrito = document.getElementById("modal-bodyCarrito")
 
+botonCarrito.addEventListener("click", ()=>{
+    cargarProductosCarrito(productosEnCarrito)
+})
+
 function cargarProductosCarrito(array){
     modalBodyCarrito.innerHTML = ""
-    array.forEach((productoEnCarrito) => {
+    array.forEach((productoCarrito) => {
 
         modalBodyCarrito.innerHTML += `
-        <div class="card border-primary mb-3" id ="productoCarrito${productoEnCarrito.id}" style="max-width: 540px;">
-                 <img class="card-img-top" height="300px" src="../fotos/${productoEnCarrito.imagen}" alt="">
+        <div class="card border-primary mb-3" id ="productoCarrito${productoCarrito.id}" style="max-width: 540px;">
+                 <img class="card-img-top" height="300px" src="../fotos/${productoCarrito.imagen}" alt="">
                  <div class="card-body">
-                        <h4 class="card-title">${productoEnCarrito.nombre}</h4>
+                        <h4 class="card-title">${productoCarrito.nombre}</h4>
                     
-                         <p class="card-text">${productoEnCarrito.precio}</p> 
+                         <p class="card-text">${productoCarrito.precio}</p> 
                          <button class= "btn btn-danger" id="botonEliminar"><i class="fas fa-trash-alt"></i></button>
                  </div>    
             </div>
+        
+            
         `
     })
-    //calcularTotal(array)
+    calcularTotal(productosEnCarrito)
 }
 
+function calcularTotal(array){
+    let total = array.reduce((acc, productoCarrito)=> acc + productoCarrito.precio ,0)
+    console.log("Con reduce " +total)
+
+    
+
+    precioTotal.innerHTML = `El total de su compra es <strong> $ ${total}</strong>`
+}
