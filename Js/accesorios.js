@@ -189,7 +189,7 @@ function cargarProductosCarrito(array){
                  <div class="card-body">
                         <h4 class="card-title">${productoCarrito.nombre}</h4>
                     
-                         <p class="card-text">${productoCarrito.precio}</p> 
+                         <p class="card-text"> $ ${productoCarrito.precio}</p> 
                          <button class= "btn btn-danger" id="botonEliminar"><i class="fas fa-trash-alt"></i></button>
                  </div>    
             </div>
