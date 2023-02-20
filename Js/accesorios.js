@@ -19,10 +19,9 @@ const accesorio7 = new accesorio(7,'FUNDA PROTECTORA (HILUX)', 34259 ,"fundaProt
 const accesorio8 = new accesorio(8,'PORTA TABLET', 18959 ,"portaTablet.jpeg")
 
 const tiendaOnline=[accesorio1,accesorio2,accesorio3,accesorio4,accesorio5,accesorio6,accesorio7,accesorio8]
- console.log(tiendaOnline)
+
 
 //MOSTRAR TIENDA
-
 
 
 let accesorios = document.getElementById("accesorios")
@@ -39,16 +38,22 @@ function mostrarCatalogo(array){
             <div  class="card-body">
                 <h5 class="card-title">${accesorio.nombre}</h5>
                 <p class="card-text">$ ${accesorio.precio} </p>
-                <button id="agregarBtn${accesorio.id}" class="btn btn-outline-success">Agregar al Carrito</button>
+                <button id="BtnAgregarCarrito${accesorio.id}" class="btn btn-outline-success">Agregar al Carrito</button>
                 
             </div>
         </div>`
         accesorios.appendChild(nuevoAccesorio)
 
-      
+        let BtnAgregarCarrito = document.getElementById(`BtnAgregarCarrito${accesorio.id}`)
+        // console.log(btnAgregar)
+        BtnAgregarCarrito.addEventListener("click", ()=>{
+            agregarAlCarrito(accesorio)
+        }
+        )
+ 
+    }
     }
 
-}
 
 mostrarCatalogo(tiendaOnline)
 
@@ -56,6 +61,7 @@ mostrarCatalogo(tiendaOnline)
 
 let buscador = document.getElementById("buscador")
 let coincidencia = document.getElementById("coincidencia")
+
 
 function buscarInfo(buscado, array){
    
@@ -79,9 +85,11 @@ buscador.addEventListener("input", ()=>{
 }) 
 
 
+
 //ordenar
 
 let selectOrden = document.getElementById("selectOrden")
+
 
 
 function ordenarMenorMayor(array){
@@ -111,3 +119,77 @@ selectOrden.addEventListener("change", ()=>{
         mostrarCatalogo(tiendaOnline)
     }
 })
+
+//array de productosComprados
+
+
+let productosEnCarrito = JSON.parse(localStorage.getItem("carrito")) || []
+console.log(productosEnCarrito)
+
+
+
+
+
+//agregar al carrito
+
+function agregarAlCarrito(accesorio){
+    // console.log(libro)
+    let accesorioAgregado = productosEnCarrito.find((elem)=> elem.id == accesorio.id)
+    
+    if(accesorioAgregado == undefined){
+        //nivel lógica del array
+        console.log(`El articulo ${accesorio.nombre}  ha sido agregado. Vale ${accesorio.precio}`)
+        productosEnCarrito.push(accesorio)
+        console.log(productosEnCarrito)
+        localStorage.setItem("carrito", JSON.stringify(productosEnCarrito))
+        // cargarProductosCarrito(productosEnCarrito)
+        //sweet alert
+        Swal.fire({
+            title: "Ha agregado un producto ",
+            text: `El  ${accesorio.nombre} ya ha sido agregado`,
+            icon: "success",
+            confirmButtonText: 'Entendido',
+            confirmButtonColor: "green",
+            //duración en mili segundos del alert
+            timer: 5000,
+            imageUrl: `../fotos/${accesorio.imagen}`,
+            imageHeight: 200
+        })
+
+    }else{
+        console.log(`EL articulo ${accesorio.nombre} ya existe en el carrito`)
+        Swal.fire({
+            title: `Producto ya existente`,
+            text: `EL articulo ${accesorio.nombre}  ya existe en el carrito`,
+            icon: "warning",
+            timer: 5000,
+            // confirmButton: false
+        })
+    }
+}
+
+//modal
+
+//agregar al modal carrito
+
+let modalBodyCarrito = document.getElementById("modal-bodyCarrito")
+
+function cargarProductosCarrito(array){
+    modalBodyCarrito.innerHTML = ""
+    array.forEach((productoEnCarrito) => {
+
+        modalBodyCarrito.innerHTML += `
+        <div class="card border-primary mb-3" id ="productoCarrito${productoEnCarrito.id}" style="max-width: 540px;">
+                 <img class="card-img-top" height="300px" src="../fotos/${productoEnCarrito.imagen}" alt="">
+                 <div class="card-body">
+                        <h4 class="card-title">${productoEnCarrito.nombre}</h4>
+                    
+                         <p class="card-text">${productoEnCarrito.precio}</p> 
+                         <button class= "btn btn-danger" id="botonEliminar"><i class="fas fa-trash-alt"></i></button>
+                 </div>    
+            </div>
+        `
+    })
+    //calcularTotal(array)
+}
+

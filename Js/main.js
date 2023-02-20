@@ -13,6 +13,7 @@ class auto  {
         console.log(`El Modelo es ${this.modelo}, el Kilometraje es ${this.km}, color ${this.color}, su tipo de combistibles es ${this.Tipodecombustible} y su precio es ${this.precio}`)
     }
 }
+
 const auto1 = new auto(1,'Toyota Etios Xs 1.5 4p' ,2016,2940000 ,70062,'Rojo',"Diesel","ToyotaEtiosXs-rojo.jpg")
 const auto2 = new auto(2,'Toyota Etios Platium 1.5 5p' ,2017,3640000 ,92062,'Blanco ',"Nafta","ToyotaEtiosPlatium-blanco.jpg")
 const auto3 = new auto(3,'Volkswagen Gol Trend Trendilne 1.6  5p' ,2019,3570000 ,28302,'Gris',"Nafta/GNC","VolkswagenGolTrendTrendilne.jpg")
@@ -30,57 +31,7 @@ let garage=[]
     }
 
 
-
-
-//agregar auto
-function agregarAuto(){
-    
-    let modeloIngresado=prompt('Ingrese modelo del rodado')
-    let AñoIngresado=prompt('Ingrese Año de rodado')
-    let PrecioIngresado=prompt('Ingrese precio del rodado')
-    let KmIngresados=prompt('Ingrese Kms del rodado')
-    let ColorIngresado=prompt('Ingrese color del rodado')
-    let combustibleIngresado=prompt("Ingrese tipo de combustible que utiliza el rodado")
-
-    const autoNuevo=new auto(garage.length+1,modeloIngresado,AñoIngresado,PrecioIngresado,KmIngresados,ColorIngresado,combustibleIngresado,)
-     console.log(autoNuevo)
-
-     garage.push(autoNuevo)
-     console.log(garage)
-
-
-garage.forEach((auto)=>{
-    console.log(auto.id,auto.modelo, auto.año,auto.precio,auto.km, auto.color,auto.Tipodecombustible)
-})
-
-} 
-
-
-
-//  ver catalogo
-function verCatalogo(array){
-    console.log('Bienvenidos! nuestro catalogo es:')
-    array.forEach((auto)=>{
-        console.log(auto.id,auto.modelo, auto.año,auto.precio,auto.km, auto.color,auto.Tipodecombustible)
-    })
-    preguntarOpcion()
-}
-// filtrar por modelo
-function buscarPorModelo(arr){
-    const ModeloBuscado = prompt("Ingrese el Modelo auto que está buscando")
-    const busqueda = arr.filter((auto)=> auto.modelo.toLowerCase() == ModeloBuscado.toLowerCase())
-    if(busqueda.length == 0){
-        console.log(`No hay coincidencias para el rodado ${ModeloBuscado}`)
-    }else{
-        
-        console.log(busqueda)
-        verCatalogo(busqueda)
-    }
-    
-}
-
-//plantila para catalogo
-
+//plantila  catalogo
 
 let autos = document.getElementById("autos")
 function mostrarCatalogo(array){
@@ -112,8 +63,8 @@ function mostrarCatalogo(array){
 }
 
 mostrarCatalogo(garage)
-//declaro inputs agregar auto
 
+//declaro inputs agregar auto
 
 let cargarRodadoNuevo=document.getElementById("cargarRodadoNuevo")
 
@@ -223,3 +174,4 @@ selectOrden.addEventListener("change", ()=>{
         mostrarCatalogo(garage)
     }
 })
+

@@ -15,6 +15,11 @@
 
      <!--link css-->
      <link rel="stylesheet" href="../css/style.css">
+
+     <!--Toastify-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <header>
@@ -120,6 +125,33 @@
             <ul><a style="text-decoration: none;color: white;" href="https://www.lineup.com.ar/company/lineuptoyota/" target="_blank"><i class="fa-brands fa-linkedin"></i></a></ul>
             </div>
 
+
+
+            
+    <!--Modal Carrito-->
+    <div class="modal fade" id="idModalCarrito" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: black;" >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel" >Carrito de Compras</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            
+          </div>
+          <div class="modal-body" id="modal-bodyCarrito">
+            
+          </div>
+          <div class="row ml-ato">
+            <p id="precioTotal"></p>
+          </div>
+          <div class="modal-footer">
+            
+            
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" data-bs-dismiss="modal" class="btn btn-success" id="botonFinalizarCompra">Finalizar Compra</button>
+          </div>
+        </div>
+      </div>
+    </div>
       
     </footer>
     <!-- JavaScript Bundle with Popper -->
