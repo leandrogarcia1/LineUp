@@ -10,10 +10,10 @@ class auto  {
         this.imagen=imagen
     }
     mostrarInfoAuto(){
-        console.log(`El Modelo es ${this.modelo}, el Kilometraje es ${this.km}, color ${this.color}, su tipo de combistibles es ${this.Tipodecombustible} y su precio es ${this.precio}`)
+        console.log(`El Modelo es ${this.modelo}, el Kilometraje es ${this.km}, color ${this.color}, su tipo de combistibles es ${this.Tipodecombustible} y su precio es ${this.precio} `)
     }
 }
-
+/*
 const auto1 = new auto(1,'Toyota Etios Xs 1.5 4p' ,2016,2940000 ,70062,'Rojo',"Diesel","ToyotaEtiosXs-rojo.jpg")
 const auto2 = new auto(2,'Toyota Etios Platium 1.5 5p' ,2017,3640000 ,92062,'Blanco ',"Nafta","ToyotaEtiosPlatium-blanco.jpg")
 const auto3 = new auto(3,'Volkswagen Gol Trend Trendilne 1.6  5p' ,2019,3570000 ,28302,'Gris',"Nafta/GNC","VolkswagenGolTrendTrendilne.jpg")
@@ -21,16 +21,31 @@ const auto4 = new auto(4,'Toyota Hilux 4x2 D/c Srx 2.8 Tdi 6 Mt' ,2018,8790000 ,
 const auto5 = new auto(5,'Renault Kangoo Ii Express Confort 5a 1' ,2018,4040000 ,137062,'Gris',"Nafta","RenaultKangoo-gris.jpg")
 const auto6 = new auto(6,'Toyota Corolla Xei 1.8 6 M/t' ,2019,5270000 ,125062,'Blanco',"Nafta","ToyotaCorollaXei-Blanco.jpg")
 const auto7 = new auto(7,'Nissan Sentra 1.8 Advance Pure Drive' ,2019,4540000 ,55062,'Azul',"Nafta","NissanSentra1.8-azul.jpg")
-
+*/
 let garage=[]
+/*
     if(localStorage.getItem("garage")){
         garage=JSON.parse(localStorage.getItem("garage"))
     }else{
         garage.push(auto1,auto2,auto3,auto4,auto5,auto6,auto7)
         localStorage.setItem("garage",JSON.stringify(garage))
     }
+*/
+const cargarEstanteria = async ()=>{
+    //con el async puedo incluir el await
+    //ruta relativa es: la del HTML al JSON y abrir con liveServer
+    const response = await fetch("../autos.json")
+    const data = await response.json()
+    console.log(data)
+    for(let auto of data){
+        let autoNuevo = new auto(auto.id, auto.modelo, auto.año, auto.precio, auto.km, auto.color,auto.Tipodecombustible, auto.imagen)
+        garage.push(autoNuevo)
+    }
+    //dentro de la function async seteamos el storage ahí anda perfecto
+    localStorage.setItem("garage", JSON.stringify(garage))
+}
 
-
+cargarEstanteria()
 //plantila  catalogo
 
 let autos = document.getElementById("autos")
@@ -56,13 +71,37 @@ function mostrarCatalogo(array){
       let btnAgregar = document.getElementById(`agregarBtn${auto.id}`)
         //console.log(btnAgregar)
         btnAgregar.addEventListener("click",()=>{
-            alert(`El modelo es ${auto.modelo}, con ${auto.km} Kms color ${auto.color}  año ${auto.año}, su combustible es ${auto.Tipodecombustible} y su precio final es de $${auto.precio}`)
+            Swal.fire({
+                title: `${auto.modelo}`,
+                imageUrl: `../fotos/${auto.imagen}`,
+                imageHeight: 200,
+                text: `Con ${auto.km} Kms, color ${auto.color}  año ${auto.año}, su combustible es ${auto.Tipodecombustible} y su precio final es de  $${auto.precio}`,
+                showClass: {
+                  popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                  popup: 'animate__animated animate__fadeOutUp'
+                }
+              })
+              
+            //alert(`El modelo es ${auto.modelo}, con ${auto.km} Kms color ${auto.color}  año ${auto.año}, su combustible es ${auto.Tipodecombustible} y su precio final es de $${auto.precio}`)
         })
     }
 
 }
 
-mostrarCatalogo(garage)
+//mostrarCatalogo(garage)
+
+let loaderTexto=document.getElementById("loaderTexto")
+let loader=document.getElementById("loader")
+
+setTimeout(()=>{
+    mostrarCatalogo(garage)
+    loader.remove()
+    loaderTexto.remove()
+}
+,4000
+)
 
 //declaro inputs agregar auto
 

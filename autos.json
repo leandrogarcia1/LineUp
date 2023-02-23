@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "modelo": "Toyota Etios Xs 1.5 4p",
+        "año": 2016,
+        "precio": "2940000",
+        "km": 70062,
+        "colo": "Rojo",
+        "Tipodecombustible": "Diesel",
+        "imagen": "ToyotaEtiosXs-rojo.jpg"
+        
+    },
+    {
+        "id": 2,
+        "modelo": "Toyota Etios Platium 1.5 5p",
+        "año": 2017,
+        "precio": "3640000",
+        "km": 92062,
+        "colo": "Blanco",
+        "Tipodecombustible": "Nafta",
+        "imagen": "ToyotaEtiosPlatium-blanco.jpg"
+    },
+    {
+        
+        "id": 3,
+        "modelo": "Volkswagen Gol Trend Trendilne 1.6  5",
+        "año": 2019,
+        "precio": "3570000",
+        "km": 28302,
+        "colo": "Gris",
+        "Tipodecombustible": "Nafta/GNC",
+        "imagen": "VolkswagenGolTrendTrendilne.jpg"
+    },
+    {
+        "id": 4,
+        "modelo": "Toyota Hilux 4x2 D/c Srx 2.8 Tdi 6 Mt",
+        "año": 2018,
+        "precio": "8790000",
+        "km": 97062,
+        "colo": "Gris",
+        "Tipodecombustible": "Diesel",
+        "imagen": "ToyotaHilux4x2-gris.jpg"
+    },
+    {
+        "id": 5,
+        "modelo": "Renault Kangoo Ii Express Confort 5a 1",
+        "año": 2018,
+        "precio": "4040000",
+        "km": 137062,
+        "colo": "Gris",
+        "Tipodecombustible": "Nafta",
+        "imagen": "RenaultKangoo-gris.jpg"
+    },
+    {
+        "id": 6,
+        "modelo": "Toyota Corolla Xei 1.8 6 M/t",
+        "año": 2019,
+        "precio": "5270000",
+        "km": 125062,
+        "colo": "Blanco",
+        "Tipodecombustible": "Nafta",
+        "imagen": "ToyotaCorollaXei-Blanco.jpg"
+    },
+    {
+        "id": 7,
+        "modelo": "Nissan Sentra 1.8 Advance Pure Drive",
+        "año": 2019,
+        "precio": "4540000 ",
+        "km": 55062,
+        "colo": "Azul",
+        "Tipodecombustible": "Nafta",
+        "imagen": "NissanSentra1.8-azul.jpg"
+    }
+]

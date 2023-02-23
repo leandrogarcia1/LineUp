@@ -45,7 +45,7 @@ function mostrarCatalogo(array){
         accesorios.appendChild(nuevoAccesorio)
 
         let BtnAgregarCarrito = document.getElementById(`BtnAgregarCarrito${accesorio.id}`)
-        // console.log(btnAgregar)
+        
         BtnAgregarCarrito.addEventListener("click", ()=>{
             agregarAlCarrito(accesorio)
         }
@@ -133,24 +133,23 @@ console.log(productosEnCarrito)
 //agregar al carrito
 
 function agregarAlCarrito(accesorio){
-    // console.log(libro)
+    
     let accesorioAgregado = productosEnCarrito.find((elem)=> elem.id == accesorio.id)
     
     if(accesorioAgregado == undefined){
-        //nivel lógica del array
+        
         console.log(`El articulo ${accesorio.nombre}  ha sido agregado. Vale ${accesorio.precio}`)
         productosEnCarrito.push(accesorio)
         console.log(productosEnCarrito)
         localStorage.setItem("carrito", JSON.stringify(productosEnCarrito))
-        // cargarProductosCarrito(productosEnCarrito)
-        //sweet alert
+        
         Swal.fire({
             title: "Ha agregado un producto ",
             text: `El  ${accesorio.nombre} ya ha sido agregado`,
             icon: "success",
             confirmButtonText: 'Entendido',
             confirmButtonColor: "green",
-            //duración en mili segundos del alert
+            //duración en mili segundos 
             timer: 5000,
             imageUrl: `../fotos/${accesorio.imagen}`,
             imageHeight: 200
@@ -163,7 +162,7 @@ function agregarAlCarrito(accesorio){
             text: `EL articulo ${accesorio.nombre}  ya existe en el carrito`,
             icon: "warning",
             timer: 5000,
-            // confirmButton: false
+            
         })
     }
 }
@@ -190,12 +189,35 @@ function cargarProductosCarrito(array){
                         <h4 class="card-title">${productoCarrito.nombre}</h4>
                     
                          <p class="card-text"> $ ${productoCarrito.precio}</p> 
-                         <button class= "btn btn-danger" id="botonEliminar"><i class="fas fa-trash-alt"></i></button>
+                         <button class= "btn btn-danger" id="botonEliminar${productoCarrito.id}"><i class="fas fa-trash-alt"></i></button>
                  </div>    
             </div>
         
             
         `
+    })
+    array.forEach((productoEnCarrito)=> {
+        
+        document.getElementById(`botonEliminar${productoEnCarrito.id}`).addEventListener("click", ()=>{
+            //elimnar  DOM
+            let cardProducto = document.getElementById(`productoCarrito${productoEnCarrito.id}`)
+            cardProducto.remove()
+            //eliminar array de compras
+            
+            // buscar en el array el objeto a eliminar
+            let productoEliminar = array.find((auto)=>auto.id == productoEnCarrito.id)
+            
+            //indexOf para saber el indice en el array
+            let posicion = array.indexOf(productoEliminar)
+            
+            array.splice(posicion,1)
+           
+            //limpiar storage
+            localStorage.setItem("carrito", JSON.stringify(array))
+            
+            calcularTotal(array)
+        })
+
     })
     calcularTotal(productosEnCarrito)
 }
@@ -205,6 +227,47 @@ function calcularTotal(array){
     console.log("Con reduce " +total)
 
     
-
+    total == 0 ? precioTotal.innerHTML = `No hay productos en el carrito` :
     precioTotal.innerHTML = `El total de su compra es <strong> $ ${total}</strong>`
+}
+
+//terminar compra
+let botonFinalizarCompra= document.getElementById("botonFinalizarCompra")
+
+botonFinalizarCompra.addEventListener("click",()=>{
+    finalizarCompra()} )
+
+function finalizarCompra(){
+    Swal.fire({
+        title: 'Está seguro de realizar la compra',
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, seguro',
+        cancelButtonText: 'No, no quiero',
+        confirmButtonColor: 'green',
+        cancelButtonColor: 'red',
+    }).then((result)=>{
+        if(result.isConfirmed){
+            Swal.fire({
+                title: 'Compra realizada',
+                icon: 'success',
+                confirmButtonColor: 'green',
+                text: `Muchas gracias por su compra. `,
+                })
+                //resetear carrito
+                productosEnCarrito = []
+                //removemos storage
+                localStorage.removeItem("carrito")
+        }else{
+            Swal.fire({
+                title: 'Compra no realizada',
+                icon: 'info',
+                text: `La compra no ha sido realizada! `,
+                confirmButtonColor: 'green',
+                timer:3500
+            })
+        }
+    }
+
+    )
 }

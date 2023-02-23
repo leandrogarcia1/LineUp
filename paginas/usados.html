@@ -14,6 +14,10 @@
 
      <!--link css-->
      <link rel="stylesheet" href="../css/style.css">
+
+     <!--sweet alert-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
 </head>
 <body>
     <header>
@@ -99,6 +103,14 @@
             </div>
       </div> 
     </div> 
+
+    <!--Loader-->
+    <h3 id="loaderTexto" class="text-success text-center">Cargando Autos...</h3>
+    <div id="loader" class="d-flex justify-content-center">
+      <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden"></span>
+      </div>
+    </div>
 
     <!--catalogo -->
     <div class="container" >
