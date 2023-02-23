@@ -1,4 +1,4 @@
-class auto  {
+/*class auto  {
     constructor (id,modelo, año, precio, km, color, Tipodecombustible,imagen){
         this.id=id
         this.modelo=modelo;
@@ -13,6 +13,7 @@ class auto  {
         console.log(`El Modelo es ${this.modelo}, el Kilometraje es ${this.km}, color ${this.color}, su tipo de combistibles es ${this.Tipodecombustible} y su precio es ${this.precio} `)
     }
 }
+*/
 /*
 const auto1 = new auto(1,'Toyota Etios Xs 1.5 4p' ,2016,2940000 ,70062,'Rojo',"Diesel","ToyotaEtiosXs-rojo.jpg")
 const auto2 = new auto(2,'Toyota Etios Platium 1.5 5p' ,2017,3640000 ,92062,'Blanco ',"Nafta","ToyotaEtiosPlatium-blanco.jpg")
@@ -34,7 +35,7 @@ let garage=[]
 const cargarEstanteria = async ()=>{
     //con el async puedo incluir el await
     //ruta relativa es: la del HTML al JSON y abrir con liveServer
-    const response = await fetch("../autos.json")
+    const response = await fetch("../auto.json")
     const data = await response.json()
     console.log(data)
     for(let auto of data){
@@ -46,9 +47,10 @@ const cargarEstanteria = async ()=>{
 }
 
 cargarEstanteria()
+
 //plantila  catalogo
 
-let autos = document.getElementById("autos")
+let auto = document.getElementById("auto")
 function mostrarCatalogo(array){
 
     autos.innerHTML=""
