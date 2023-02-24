@@ -232,10 +232,15 @@ function calcularTotal(array){
 }
 
 //terminar compra
-let botonFinalizarCompra= document.getElementById("botonFinalizarCompra")
+let botonFinalizarCompra2= document.getElementById("botonFinalizarCompra2")
 
-botonFinalizarCompra.addEventListener("click",()=>{
-    finalizarCompra()} )
+
+botonFinalizarCompra2.addEventListener("click", ()=>{
+    finalizarCompra()
+})
+
+//botonFinalizarCompra.addEventListener("click",()=>{
+   // console.log("hola")} )
 
 function finalizarCompra(){
     Swal.fire({

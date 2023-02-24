@@ -1,4 +1,4 @@
-/*class auto  {
+class auto  {
     constructor (id,modelo, año, precio, km, color, Tipodecombustible,imagen){
         this.id=id
         this.modelo=modelo;
@@ -13,7 +13,7 @@
         console.log(`El Modelo es ${this.modelo}, el Kilometraje es ${this.km}, color ${this.color}, su tipo de combistibles es ${this.Tipodecombustible} y su precio es ${this.precio} `)
     }
 }
-*/
+
 /*
 const auto1 = new auto(1,'Toyota Etios Xs 1.5 4p' ,2016,2940000 ,70062,'Rojo',"Diesel","ToyotaEtiosXs-rojo.jpg")
 const auto2 = new auto(2,'Toyota Etios Platium 1.5 5p' ,2017,3640000 ,92062,'Blanco ',"Nafta","ToyotaEtiosPlatium-blanco.jpg")
@@ -24,33 +24,41 @@ const auto6 = new auto(6,'Toyota Corolla Xei 1.8 6 M/t' ,2019,5270000 ,125062,'B
 const auto7 = new auto(7,'Nissan Sentra 1.8 Advance Pure Drive' ,2019,4540000 ,55062,'Azul',"Nafta","NissanSentra1.8-azul.jpg")
 */
 let garage=[]
-/*
+
+const cargarEstanteria = async ()=>{
     if(localStorage.getItem("garage")){
         garage=JSON.parse(localStorage.getItem("garage"))
     }else{
-        garage.push(auto1,auto2,auto3,auto4,auto5,auto6,auto7)
-        localStorage.setItem("garage",JSON.stringify(garage))
-    }
-*/
-const cargarEstanteria = async ()=>{
+       //cargarEstanteria()
+        //localStorage.setItem("garage",JSON.stringify(garage))
+    
     //con el async puedo incluir el await
     //ruta relativa es: la del HTML al JSON y abrir con liveServer
-    const response = await fetch("../auto.json")
-    const data = await response.json()
-    console.log(data)
-    for(let auto of data){
-        let autoNuevo = new auto(auto.id, auto.modelo, auto.año, auto.precio, auto.km, auto.color,auto.Tipodecombustible, auto.imagen)
+    const response = await fetch("../auto.json").then(res=> res.json())
+    .then(data=>{
+    //const data = await response.json()
+    
+    //console.log(data)
+
+    for(let aut of data){
+        let autoNuevo = new auto(aut.id, aut.modelo, aut.año, aut.precio, aut.km, aut.color,aut.Tipodecombustible, aut.imagen)
+        
         garage.push(autoNuevo)
     }
+    console.log(garage)
     //dentro de la function async seteamos el storage ahí anda perfecto
     localStorage.setItem("garage", JSON.stringify(garage))
+
+
+    })}
 }
 
 cargarEstanteria()
 
 //plantila  catalogo
 
-let auto = document.getElementById("auto")
+let autos = document.getElementById("autos")
+
 function mostrarCatalogo(array){
 
     autos.innerHTML=""
