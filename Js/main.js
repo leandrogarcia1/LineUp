@@ -29,16 +29,10 @@ const cargarEstanteria = async ()=>{
     if(localStorage.getItem("garage")){
         garage=JSON.parse(localStorage.getItem("garage"))
     }else{
-       //cargarEstanteria()
-        //localStorage.setItem("garage",JSON.stringify(garage))
-    
-    //con el async puedo incluir el await
-    //ruta relativa es: la del HTML al JSON y abrir con liveServer
+      
     const response = await fetch("../auto.json").then(res=> res.json())
     .then(data=>{
-    //const data = await response.json()
     
-    //console.log(data)
 
     for(let aut of data){
         let autoNuevo = new auto(aut.id, aut.modelo, aut.año, aut.precio, aut.km, aut.color,aut.Tipodecombustible, aut.imagen)
@@ -46,7 +40,7 @@ const cargarEstanteria = async ()=>{
         garage.push(autoNuevo)
     }
     console.log(garage)
-    //dentro de la function async seteamos el storage ahí anda perfecto
+  
     localStorage.setItem("garage", JSON.stringify(garage))
 
 
@@ -94,7 +88,7 @@ function mostrarCatalogo(array){
                 }
               })
               
-            //alert(`El modelo es ${auto.modelo}, con ${auto.km} Kms color ${auto.color}  año ${auto.año}, su combustible es ${auto.Tipodecombustible} y su precio final es de $${auto.precio}`)
+            
         })
     }
 
